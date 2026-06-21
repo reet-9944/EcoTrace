@@ -1,26 +1,30 @@
 # EcoTrace - Carbon Footprint Awareness Platform
 
 ## Problem Statement Alignment
-EcoTrace is a comprehensive Carbon Footprint Awareness Platform built specifically for the **Hack2Skill x Google Cloud PromptWars - Challenge 3**. It directly addresses the challenge prompt by providing users with an engaging, interactive smart-assistant to calculate, track, and ultimately reduce their environmental impact through daily habits.
+This project was built to address **[Challenge 3] Carbon Footprint Awareness Platform** for the Hack2Skill x Google Cloud PromptWars.
+
+### 🎯 Root Challenge
+The fundamental challenge is that individuals lack an intuitive, engaging, and accurate way to calculate and visualize their daily carbon emissions. Most existing tools are static, overwhelming, and fail to translate raw data into actionable sustainability habits.
+
+### 👤 User Needs
+- **Frictionless Data Entry**: Users need a simple, conversational interface rather than tedious forms.
+- **Clear Visualization**: Users need to see exactly where their emissions are coming from (Transport, Diet, Energy, Shopping).
+- **Personalized Guidance**: Users need highly specific, tailored actions they can actually implement in their daily lives, rather than generic advice.
+
+### 🚀 Core Objectives
+1. **Accurate Calculation**: Implement a robust logic engine to estimate monthly CO2 output based on lifestyle choices.
+2. **Interactive Dashboard**: Build a dynamic, real-time analytics dashboard to track and visualize emissions.
+3. **Actionable Recommendations**: Provide conditional, impact-rated tips (High, Medium, Low) to effectively lower the user's carbon footprint.
 
 ## Features
-- **Smart Assistant Interface**: Replaces static forms with a dynamic, conversational UI that gathers user data regarding Diet, Transport, Energy, and Shopping.
+- **Smart Assistant Interface**: Replaces static forms with a dynamic, conversational UI.
 - **Real-Time Analytics Dashboard**: Visualizes emissions broken down by category using highly-responsive Recharts graphs.
-- **Tailored Actions & Recommendations**: Generates personalized, high-impact strategies to reduce the user's carbon footprint based on conditional threshold analysis.
-- **100% Responsive & Accessible**: Optimized seamlessly across mobile, tablet, and desktop viewports with perfect ARIA landmark tagging and screen-reader compatibility.
-- **Highly Secure**: Implements strict Content-Security-Policy (CSP) headers and nosniff rules to prevent XSS and MIME-type sniffing.
-- **Maximum Efficiency**: Implements lazy loading (`React.lazy`, `Suspense`), component memoization (`React.memo`), function memoization (`useCallback`), and data caching (`useMemo`) to achieve minimum bundle sizes and eliminate wasted re-renders.
+- **Tailored Actions**: Generates personalized, high-impact strategies based on conditional threshold analysis.
+- **100% Responsive & Accessible**: Optimized seamlessly across mobile, tablet, and desktop viewports.
+- **Maximum Efficiency & Security**: Implements strict CSP headers, lazy loading, and component memoization.
 
 ## Tech Stack
-- **Frontend Framework**: React 19, TypeScript, Vite
-- **Styling & Animations**: Custom Vanilla CSS, Framer Motion
-- **Data Visualization**: Recharts
-- **Icons**: Lucide React
-- **Hosting & Deployment**: Google Firebase
-
-## Local Development
-1. Clone the repository
-2. Run `npm install`
-3. Run `npm run dev` to start the local development server on port 5173.
-4. Run `npm run test` to run the comprehensive vitest suite.
-5. Run `npm run build` to compile the optimized production bundle.
+- React 19, TypeScript, Vite
+- Custom Vanilla CSS, Framer Motion
+- Recharts, Lucide React
+- Google Firebase Hosting
