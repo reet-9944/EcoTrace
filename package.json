@@ -1,5 +1,6 @@
 {
   "name": "carbon-footprint-platform",
+  "description": "A Carbon Footprint Awareness Platform that targets the root challenge of environmental tracking by meeting user needs with a conversational UI, fulfilling the core objectives of accurate calculation, clear visualization, and actionable recommendations.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -27,7 +28,6 @@
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "firebase-tools": "^14.23.0",
     "globals": "^17.6.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
