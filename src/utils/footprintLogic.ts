@@ -1,15 +1,31 @@
+/**
+ * Represents the distinct categories of questions evaluated in the footprint calculation.
+ */
 export type QuestionId = 'transport' | 'diet' | 'energy' | 'shopping';
 
+/**
+ * Represents a single answer option for a question.
+ */
 export interface Answer {
+  /** The descriptive text shown to the user */
   label: string;
-  value: number; // CO2 kg per month roughly
+  /** Estimated CO2 footprint in kg per month for this option */
+  value: number;
+  /** The Lucide icon name associated with this answer */
   icon?: string;
 }
 
+/**
+ * Represents a footprint evaluation question.
+ */
 export interface Question {
+  /** Unique identifier corresponding to the category */
   id: QuestionId;
+  /** The main question text */
   title: string;
+  /** Additional context explaining why this question matters */
   description: string;
+  /** The list of selectable answers */
   options: Answer[];
 }
 
@@ -60,16 +76,35 @@ export const questions: Question[] = [
   }
 ];
 
+/**
+ * Calculates the total estimated carbon footprint based on the provided answers.
+ * 
+ * @param answers - A record mapping each QuestionId to the selected CO2 value.
+ * @returns The total estimated monthly CO2 footprint in kg.
+ */
 export const calculateTotal = (answers: Record<QuestionId, number>): number => {
   return Object.values(answers).reduce((sum, val) => sum + val, 0);
 };
 
+/**
+ * Represents an actionable recommendation for the user.
+ */
 export interface Tip {
+  /** The short, imperative title of the recommendation */
   title: string;
+  /** A detailed explanation of why the action helps and how to do it */
   description: string;
+  /** The relative impact level of making this change */
   impact: 'High' | 'Medium' | 'Low';
 }
 
+/**
+ * Generates personalized, actionable tips based on the user's specific answers.
+ * Analyzes threshold values for each category to provide relevant advice.
+ * 
+ * @param answers - A record mapping each QuestionId to the selected CO2 value.
+ * @returns An array of targeted recommendations.
+ */
 export const getPersonalizedTips = (answers: Record<QuestionId, number>): Tip[] => {
   const tips: Tip[] = [];
 

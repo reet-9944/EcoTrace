@@ -22,10 +22,36 @@
   --radius-lg: 28px;
   --radius-full: 9999px;
   
+  --panel-padding: 3rem;
+  --header-padding: 1.5rem 2rem;
+  --title-size: 2.5rem;
+  --score-size: 5rem;
+  --gap-large: 4rem;
+  
   /* Modern Shadows */
   --shadow-sm: 0 4px 12px rgba(45, 106, 79, 0.05), 0 1px 2px rgba(45, 106, 79, 0.03);
   --shadow-md: 0 12px 32px rgba(45, 106, 79, 0.08), 0 4px 8px rgba(45, 106, 79, 0.04);
   --shadow-lg: 0 24px 64px rgba(45, 106, 79, 0.12), 0 8px 16px rgba(45, 106, 79, 0.05);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --panel-padding: 1.5rem;
+    --header-padding: 1rem 1.25rem;
+    --title-size: 2rem;
+    --score-size: 4rem;
+    --gap-large: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --panel-padding: 1.25rem;
+    --header-padding: 1rem;
+    --title-size: 1.6rem;
+    --score-size: 3.2rem;
+    --gap-large: 1.5rem;
+  }
 }
 
 * {

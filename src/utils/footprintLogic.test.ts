@@ -34,6 +34,48 @@ describe('footprintLogic validation', () => {
     expect(dietTip).toBeUndefined();
   });
 
+  test('getPersonalizedTips provides medium impact tip for diet', () => {
+    const mockAnswers = {
+      transport: 100, // Low
+      diet: 180,      // Medium
+      energy: 50,     // Low
+      shopping: 20    // Low
+    };
+    
+    const tips = getPersonalizedTips(mockAnswers);
+    const dietTip = tips.find(t => t.title.includes('Meatless Mondays'));
+    expect(dietTip).toBeDefined();
+    expect(dietTip?.impact).toBe('Medium');
+  });
+
+  test('getPersonalizedTips provides high impact tip for energy', () => {
+    const mockAnswers = {
+      transport: 100, // Low
+      diet: 100,      // Low
+      energy: 200,    // High
+      shopping: 20    // Low
+    };
+    
+    const tips = getPersonalizedTips(mockAnswers);
+    const energyTip = tips.find(t => t.title.includes('Energy Provider with Renewables'));
+    expect(energyTip).toBeDefined();
+    expect(energyTip?.impact).toBe('High');
+  });
+
+  test('getPersonalizedTips provides medium impact tip for shopping', () => {
+    const mockAnswers = {
+      transport: 100, // Low
+      diet: 100,      // Low
+      energy: 50,     // Low
+      shopping: 120   // Medium
+    };
+    
+    const tips = getPersonalizedTips(mockAnswers);
+    const shoppingTip = tips.find(t => t.title.includes('Second-hand Shopping'));
+    expect(shoppingTip).toBeDefined();
+    expect(shoppingTip?.impact).toBe('Medium');
+  });
+
   test('getPersonalizedTips provides fallback tip if everything is great', () => {
     const mockAnswers = {
       transport: 0,

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { questions } from '../utils/footprintLogic';
 import type { QuestionId } from '../utils/footprintLogic';
@@ -27,14 +27,17 @@ interface SmartAssistantProps {
   onComplete: (answers: Record<QuestionId, number>) => void;
 }
 
-export const SmartAssistant: React.FC<SmartAssistantProps> = ({ onComplete }) => {
+/**
+ * SmartAssistant component guides the user through the footprint questions.
+ */
+export const SmartAssistant: React.FC<SmartAssistantProps> = memo(({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<Record<QuestionId, number>>>({});
 
   const question = questions[currentStep];
   const isLastStep = currentStep === questions.length - 1;
 
-  const handleSelect = (value: number) => {
+  const handleSelect = useCallback((value: number) => {
     const newAnswers = { ...answers, [question.id]: value };
     setAnswers(newAnswers);
     
@@ -43,25 +46,32 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = ({ onComplete }) =>
     } else {
       setTimeout(() => setCurrentStep(curr => curr + 1), 350); // Delay for smooth transition
     }
-  };
+  }, [answers, question.id, isLastStep, onComplete]);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     if (currentStep > 0) {
       setCurrentStep(curr => curr - 1);
     }
-  };
+  }, [currentStep]);
 
   const progress = ((currentStep) / questions.length) * 100;
 
   return (
-    <div className="glass-panel" style={{ borderRadius: 'var(--radius-lg)', padding: '3rem', maxWidth: '650px', margin: '0 auto' }}>
+    <div className="glass-panel" style={{ borderRadius: 'var(--radius-lg)', padding: 'var(--panel-padding)', maxWidth: '650px', margin: '0 auto', width: '100%' }}>
       
       {/* Header & Progress */}
       <div style={{ marginBottom: '2.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
           {currentStep > 0 ? (
-            <button onClick={handleBack} style={{ display: 'flex', alignItems: 'center', color: 'var(--color-text-muted)', gap: '0.5rem', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-primary)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}>
-              <ArrowLeft size={18} /> Back
+            <button 
+              onClick={handleBack} 
+              aria-label="Go to previous step"
+              data-testid="back-button"
+              style={{ display: 'flex', alignItems: 'center', color: 'var(--color-text-muted)', gap: '0.5rem', fontWeight: 500, transition: 'color 0.2s' }} 
+              onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-primary)'} 
+              onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
+            >
+              <ArrowLeft size={18} aria-hidden="true" /> Back
             </button>
           ) : (
             <div /> // Placeholder to keep alignment
@@ -95,7 +105,7 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = ({ onComplete }) =>
             {question.description}
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '1.25rem' }}>
             {question.options.map((option, idx) => {
               const isSelected = answers[question.id] === option.value;
               return (
@@ -104,6 +114,8 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = ({ onComplete }) =>
                   className={`option-card ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleSelect(option.value)}
                   aria-pressed={isSelected}
+                  aria-label={`Select option: ${option.label}`}
+                  data-testid={`option-${option.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   <div style={{ 
                     color: isSelected ? 'var(--color-primary)' : 'var(--color-text-muted)', 
@@ -125,5 +137,5 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = ({ onComplete }) =>
 
     </div>
   );
-};
+});
 

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SmartAssistant } from './components/SmartAssistant';
-import { Dashboard } from './components/Dashboard';
+const SmartAssistant = lazy(() => import('./components/SmartAssistant').then(m => ({ default: m.SmartAssistant })));
+const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
 import type { QuestionId } from './utils/footprintLogic';
 import { Leaf } from 'lucide-react';
 
@@ -12,7 +12,7 @@ function App() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       
       {/* Header */}
-      <header style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
+      <header style={{ padding: 'var(--header-padding)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-primary)' }}>
           <Leaf size={28} />
           <h1 style={{ fontSize: '1.25rem', fontWeight: 600 }}>EcoTrace</h1>
@@ -24,7 +24,7 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main style={{ flex: 1, padding: '3rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <main style={{ flex: 1, padding: 'var(--panel-padding) 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <AnimatePresence mode="wait">
           {!answers ? (
             <motion.div
@@ -36,7 +36,7 @@ function App() {
               style={{ width: '100%' }}
             >
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--color-text)', marginBottom: '1rem' }}>
+                <h2 style={{ fontSize: 'var(--title-size)', fontWeight: 700, color: 'var(--color-text)', marginBottom: '1rem' }}>
                   Discover Your Impact.
                 </h2>
                 <p style={{ fontSize: '1.125rem', color: 'var(--color-text-muted)', maxWidth: '500px', margin: '0 auto' }}>
@@ -44,7 +44,9 @@ function App() {
                 </p>
               </div>
               
-              <SmartAssistant onComplete={(res) => setAnswers(res)} />
+              <Suspense fallback={<div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '2rem' }}>Loading...</div>}>
+                <SmartAssistant onComplete={(res) => setAnswers(res)} />
+              </Suspense>
             </motion.div>
           ) : (
             <motion.div
@@ -55,7 +57,9 @@ function App() {
               transition={{ duration: 0.4 }}
               style={{ width: '100%' }}
             >
-              <Dashboard answers={answers} onReset={() => setAnswers(null)} />
+              <Suspense fallback={<div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '2rem' }}>Analyzing...</div>}>
+                <Dashboard answers={answers} onReset={() => setAnswers(null)} />
+              </Suspense>
             </motion.div>
           )}
         </AnimatePresence>
