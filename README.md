@@ -1,6 +1,6 @@
 # EcoTrace - Carbon Footprint Awareness Platform
 
-![EcoTrace Banner](https://via.placeholder.com/1200x400/52796f/ffffff?text=EcoTrace+-+Carbon+Footprint+Awareness)
+![EcoTrace Banner](https://placehold.co/1200x400/52796f/ffffff?text=EcoTrace+-+Carbon+Footprint+Awareness)
 
 
 
