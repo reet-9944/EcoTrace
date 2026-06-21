@@ -2,8 +2,7 @@
 
 ![EcoTrace Banner](https://via.placeholder.com/1200x400/52796f/ffffff?text=EcoTrace+-+Carbon+Footprint+Awareness)
 
-## 🌍 Chosen Vertical
-**[Challenge 3] Carbon Footprint Awareness Platform**
+
 
 EcoTrace is a smart, dynamic, and interactive platform designed to help users calculate, understand, and reduce their carbon footprint. Instead of a static, overwhelming form, EcoTrace uses a conversational "Smart Assistant" (EcoGuide) to contextually gather information about a user's daily habits across four major categories: Transportation, Diet, Energy, and Shopping.
 
@@ -50,5 +49,3 @@ Following modern web design principles:
 - The emission values assigned to options (e.g., Car = 400kg CO₂/mo) are rough, relative approximations designed to demonstrate the logical engine's functionality rather than exact scientific measurements.
 - A "monthly" timeframe is used for easier conceptualization by the average user.
 
----
-*Built for the Hack2Skill Challenge.*
