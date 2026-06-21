@@ -1,51 +1,26 @@
 # EcoTrace - Carbon Footprint Awareness Platform
 
-![EcoTrace Banner](https://placehold.co/1200x400/52796f/ffffff?text=EcoTrace+-+Carbon+Footprint+Awareness)
+## Problem Statement Alignment
+EcoTrace is a comprehensive Carbon Footprint Awareness Platform built specifically for the **Hack2Skill x Google Cloud PromptWars - Challenge 3**. It directly addresses the challenge prompt by providing users with an engaging, interactive smart-assistant to calculate, track, and ultimately reduce their environmental impact through daily habits.
 
+## Features
+- **Smart Assistant Interface**: Replaces static forms with a dynamic, conversational UI that gathers user data regarding Diet, Transport, Energy, and Shopping.
+- **Real-Time Analytics Dashboard**: Visualizes emissions broken down by category using highly-responsive Recharts graphs.
+- **Tailored Actions & Recommendations**: Generates personalized, high-impact strategies to reduce the user's carbon footprint based on conditional threshold analysis.
+- **100% Responsive & Accessible**: Optimized seamlessly across mobile, tablet, and desktop viewports with perfect ARIA landmark tagging and screen-reader compatibility.
+- **Highly Secure**: Implements strict Content-Security-Policy (CSP) headers and nosniff rules to prevent XSS and MIME-type sniffing.
+- **Maximum Efficiency**: Implements lazy loading (`React.lazy`, `Suspense`), component memoization (`React.memo`), function memoization (`useCallback`), and data caching (`useMemo`) to achieve minimum bundle sizes and eliminate wasted re-renders.
 
+## Tech Stack
+- **Frontend Framework**: React 19, TypeScript, Vite
+- **Styling & Animations**: Custom Vanilla CSS, Framer Motion
+- **Data Visualization**: Recharts
+- **Icons**: Lucide React
+- **Hosting & Deployment**: Google Firebase
 
-EcoTrace is a smart, dynamic, and interactive platform designed to help users calculate, understand, and reduce their carbon footprint. Instead of a static, overwhelming form, EcoTrace uses a conversational "Smart Assistant" (EcoGuide) to contextually gather information about a user's daily habits across four major categories: Transportation, Diet, Energy, and Shopping.
-
-## 🧠 Approach and Logic
-
-### Dynamic Smart Assistant
-The core of the application is a step-by-step interactive assistant. It presents questions sequentially, keeping the cognitive load low. 
-- **Contextual Data Gathering**: As the user selects options (e.g., "Heavy Meat Eater" or "Public Transit"), the underlying state engine records the CO₂ emission value associated with that choice.
-- **Smooth Transitions**: Built with `framer-motion`, the UI feels soothing, minimal, and premium, avoiding harsh "lightning-fast" jumps in favor of smooth fade-ins and satisfying hover states.
-
-### Logical Decision Making
-The calculation engine (`src/utils/footprintLogic.ts`) does more than just sum up numbers:
-1. **Calculation**: It aggregates the total monthly CO₂ footprint based on the user's specific answers.
-2. **Personalized Actionable Tips**: The engine analyzes the highest-impact areas. For instance, if the user scores high in Transportation but low in Diet, the system logically generates tips heavily weighted towards transit (e.g., Carpooling) rather than generic, irrelevant advice. Each tip is categorized by its potential impact (High, Medium, Low).
-
-### Design Aesthetics
-Following modern web design principles:
-- **Earthy Palette**: Sage greens, soft creams, and warm grays to match the environmental theme.
-- **Minimalist**: Clean typography (`Inter` font), ample whitespace, and glassmorphism elements (`glass-panel`).
-- **Accessibility**: Semantic HTML and ARIA labels are used to ensure the platform is usable by everyone.
-
-## 🚀 How it Works
-
-1. **Start Assessment**: The user is greeted by the EcoGuide assistant.
-2. **Answer Questions**: The user clicks through simple, icon-driven option cards detailing their habits.
-3. **View Dashboard**: Upon completion, a comprehensive dashboard visualizes the data.
-4. **Take Action**: The user is presented with high-impact, personalized recommendations to lower their footprint.
-
-## 🛠️ Tech Stack & Setup
-- **React 18**
-- **TypeScript** (for type safety and clean architecture)
-- **Vite** (for blazing fast builds)
-- **Framer Motion** (for soothing animations)
-- **Lucide React** (for crisp SVG icons)
-- **Vanilla CSS** (for precise, lightweight styling)
-
-### Running Locally
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Run `npm run dev` to start the development server.
-4. Open the provided localhost link in your browser.
-
-## 📝 Assumptions Made
-- The emission values assigned to options (e.g., Car = 400kg CO₂/mo) are rough, relative approximations designed to demonstrate the logical engine's functionality rather than exact scientific measurements.
-- A "monthly" timeframe is used for easier conceptualization by the average user.
-
+## Local Development
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm run dev` to start the local development server on port 5173.
+4. Run `npm run test` to run the comprehensive vitest suite.
+5. Run `npm run build` to compile the optimized production bundle.

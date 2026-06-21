@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { calculateTotal, getPersonalizedTips } from '../utils/footprintLogic';
 import type { QuestionId } from '../utils/footprintLogic';
@@ -40,12 +40,13 @@ export const Dashboard: React.FC<DashboardProps> = memo(({ answers, onReset }) =
     >
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <h2 className="gradient-text" style={{ fontSize: 'var(--title-size)', marginBottom: '1rem', fontWeight: 800 }}>Your Footprint Analysis</h2>
-        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', color: 'var(--color-primary)', flexWrap: 'wrap' }}>
+        <div aria-live="polite" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', color: 'var(--color-primary)', flexWrap: 'wrap' }}>
           <motion.span 
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', bounce: 0.5, delay: 0.3 }}
             style={{ fontSize: 'var(--score-size)', fontWeight: 800, lineHeight: 1 }}
+            data-testid="total-score"
           >
             {totalFootprint}
           </motion.span>
