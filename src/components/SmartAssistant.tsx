@@ -44,7 +44,7 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = memo(({ onComplete 
     if (isLastStep) {
       onComplete(newAnswers as Record<QuestionId, number>);
     } else {
-      setTimeout(() => setCurrentStep(curr => curr + 1), 350); // Delay for smooth transition
+      setTimeout(() => setCurrentStep(curr => curr + 1), 350);
     }
   }, [answers, question.id, isLastStep, onComplete]);
 
@@ -74,7 +74,7 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = memo(({ onComplete 
               <ArrowLeft size={18} aria-hidden="true" /> Back
             </button>
           ) : (
-            <div /> // Placeholder to keep alignment
+            <div />
           )}
           <span style={{ color: 'var(--color-primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-accent)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-full)' }}>
             <Leaf size={18} /> EcoGuide

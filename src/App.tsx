@@ -11,7 +11,6 @@ function App(): React.ReactElement {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* Header */}
       <header role="banner" style={{ padding: 'var(--header-padding)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-primary)' }}>
           <Leaf size={28} />
@@ -23,7 +22,6 @@ function App(): React.ReactElement {
         </nav>
       </header>
 
-      {/* Main Content */}
       <main role="main" style={{ flex: 1, padding: 'var(--panel-padding) 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <AnimatePresence mode="wait">
           {!answers ? (
@@ -65,7 +63,6 @@ function App(): React.ReactElement {
         </AnimatePresence>
       </main>
 
-      {/* Footer */}
       <footer role="contentinfo" style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-text-muted)', fontSize: '0.875rem', borderTop: '1px solid var(--color-border)' }}>
         <p>© {new Date().getFullYear()} EcoTrace Carbon Footprint Awareness Platform.</p>
       </footer>

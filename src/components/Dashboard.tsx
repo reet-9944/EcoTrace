@@ -61,7 +61,6 @@ export const Dashboard: React.FC<DashboardProps> = memo(({ answers, onReset }) =
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 'var(--gap-large)' }}>
         
-        {/* Breakdown Chart */}
         <div>
           <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 700 }}>
              Emission Sources
@@ -96,7 +95,6 @@ export const Dashboard: React.FC<DashboardProps> = memo(({ answers, onReset }) =
           </div>
         </div>
 
-        {/* Actionable Tips */}
         <div>
           <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 700 }}>
             <Lightbulb size={24} color="var(--color-primary)" /> Tailored Actions
