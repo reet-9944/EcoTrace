@@ -1,4 +1,5 @@
 import { useState, useCallback, memo } from 'react';
+import DOMPurify from 'dompurify';
 import { motion, AnimatePresence } from 'framer-motion';
 import { questions } from '../utils/footprintLogic';
 import type { QuestionId } from '../utils/footprintLogic';
@@ -98,8 +99,8 @@ export const SmartAssistant: React.FC<SmartAssistantProps> = memo(({ onComplete 
           exit={{ opacity: 0, x: -30, filter: 'blur(4px)' }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-          <h2 className="gradient-text" style={{ fontSize: '1.8rem', marginBottom: '0.75rem', fontWeight: 700 }}>
-            {question.title}
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-text)', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+            <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(question.title) }} />
           </h2>
           <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem', marginBottom: '2.5rem' }}>
             {question.description}
