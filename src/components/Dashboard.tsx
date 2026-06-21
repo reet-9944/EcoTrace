@@ -24,11 +24,11 @@ export const Dashboard: React.FC<DashboardProps> = memo(({ answers, onReset }) =
   const totalFootprint = calculateTotal(answers);
   const tips = getPersonalizedTips(answers);
 
-  const data = Object.entries(answers).map(([key, value]) => ({
+  const data = useMemo(() => Object.entries(answers).map(([key, value]) => ({
     name: key.charAt(0).toUpperCase() + key.slice(1),
     value,
     color: COLORS[key as keyof typeof COLORS] || '#74c69d'
-  }));
+  })), [answers]);
 
   return (
     <motion.div 
